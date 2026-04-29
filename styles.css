@@ -305,7 +305,7 @@ a:hover {
   background: #eef0f4;
 }
 
-/* ===== Team Formation ===== */
+/* ===== Team ===== */
 .team-card {
   background: var(--card-bg);
   border-radius: var(--radius);
@@ -313,38 +313,23 @@ a:hover {
   padding: 2rem 2.25rem;
 }
 
-.team-rule {
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
+.team-list {
+  list-style: none;
+  padding: 0;
+}
+
+.team-list li {
   padding: 0.85rem 0;
-}
-
-.team-rule + .team-rule {
-  border-top: 1px solid var(--border-light);
-}
-
-.team-rule-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
-  background: var(--hero-accent);
-  color: #fff;
-  font-size: 0.85rem;
-  font-weight: 700;
-  flex-shrink: 0;
-}
-
-.team-rule p {
   color: var(--text-secondary);
   font-size: 0.92rem;
   line-height: 1.7;
 }
 
-.team-rule p strong {
+.team-list li + li {
+  border-top: 1px solid var(--border-light);
+}
+
+.team-list li strong {
   color: var(--text-primary);
 }
 
@@ -402,34 +387,31 @@ a:hover {
 }
 
 /* ===== Due Dates ===== */
-.dates-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1.5rem;
-}
-
-.date-card {
+.dates-card {
   background: var(--card-bg);
   border-radius: var(--radius);
   box-shadow: var(--shadow-sm);
-  padding: 2rem;
-  text-align: center;
+  padding: 2rem 2.25rem;
 }
 
-.date-label {
-  font-size: 0.85rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--text-muted);
-  margin-bottom: 0.6rem;
+.dates-list {
+  list-style: none;
+  padding: 0;
 }
 
-.date-value {
-  font-size: 1.5rem;
-  font-weight: 700;
+.dates-list li {
+  padding: 0.85rem 0;
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+.dates-list li + li {
+  border-top: 1px solid var(--border-light);
+}
+
+.dates-list li strong {
   color: var(--text-primary);
-  letter-spacing: -0.02em;
 }
 
 /* ===== Grading Placeholder ===== */
