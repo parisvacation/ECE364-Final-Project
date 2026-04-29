@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ECE364 Final Project &middot; Spring 2026</title>
+    <meta
+      name="description"
+      content="ECE364 Spring 2026 Final Project: three tracks covering 3D point cloud classification, automated ML research with LLMs, and regression prediction."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- ===== Top Bar ===== -->
+    <nav class="topbar">
+      <a class="topbar-brand" href="#top">
+        <span>ECE</span>364
+      </a>
+      <div class="topbar-nav">
+        <a href="#tracks">Tracks</a>
+        <a href="#grading">Grading</a>
+      </div>
+    </nav>
+
+    <!-- ===== Hero ===== -->
+    <header class="hero" id="top">
+      <div class="hero-inner">
+        <div class="hero-label">Spring 2026</div>
+        <h1>ECE364 Final Project</h1>
+        <p>
+          Three independent tracks covering 3D point cloud classification,
+          automated machine-learning research with large language models, and
+          regression-based constituent prediction. Choose one track, build on
+          the provided baseline, and submit your best results.
+        </p>
+      </div>
+    </header>
+
+    <!-- ===== Tracks ===== -->
+    <section class="section" id="tracks">
+      <div class="container">
+        <div class="section-header">
+          <h2>Project Tracks</h2>
+          <p>
+            Each track provides a baseline model, a dataset, and a clear
+            evaluation metric. Select one and improve upon the baseline.
+          </p>
+          <div class="section-divider"></div>
+        </div>
+
+        <div class="tracks-grid">
+          <!-- Track 1 -->
+          <article class="track-card" data-track="1">
+            <div class="track-card-header">
+              <div class="track-number">1</div>
+              <h3 class="track-card-title">
+                3D Point Cloud Classification
+              </h3>
+            </div>
+            <div class="track-card-body">
+              <p>
+                In this track you build a robust classifier for corrupted 3D
+                point clouds. The dataset is based on ModelNet40 and contains
+                40 object categories with seven types of synthetic
+                corruption&mdash;jitter, scale, rotation, global dropout, local
+                dropout, global outlier addition, and density increase&mdash;at
+                three severity levels. The training set provides 25,086
+                labelled point clouds and the validation set 4,434, while the
+                test set (7,404 samples) uses anonymised file names so that
+                class labels are not available during inference.
+              </p>
+              <p>
+                The reference baseline is a from-scratch PointNet++ (SSG)
+                implementation with 1.47 million trainable parameters. Without
+                any additional data augmentation beyond the on-disk
+                corruptions, it achieves <strong>86.60&thinsp;%</strong>
+                classification accuracy on the held-out test set. Your goal is
+                to improve upon this accuracy through better architectures,
+                training strategies, or data processing.
+              </p>
+              <div class="track-meta">
+                <span class="track-tag"><strong>Metric</strong> Accuracy</span>
+                <span class="track-tag"
+                  ><strong>Submit</strong> submission.csv</span>
+                <span class="track-tag"
+                  ><strong>Classes</strong> 40</span>
+              </div>
+              <a class="track-link" href="#">View on GitHub</a>
+            </div>
+          </article>
+
+          <!-- Track 2 -->
+          <article class="track-card" data-track="2">
+            <div class="track-card-header">
+              <div class="track-number">2</div>
+              <h3 class="track-card-title">AutoResearch</h3>
+            </div>
+            <div class="track-card-body">
+              <p>
+                Rather than manually tuning a model, this track asks you to
+                write an agent (<code>agent.py</code>) that
+                <em>automatically</em> searches for a better training pipeline.
+                The agent reads a baseline
+                <code>train.py</code>&mdash;a Deep Averaging Network (DAN) for
+                intent classification&mdash;and iteratively asks an LLM
+                (Kimi-K2.5) to propose improved versions. Each proposal is
+                validated locally; only candidates that improve on the current
+                best validation accuracy are kept.
+              </p>
+              <p>
+                The evaluation benchmark contains 64 intent categories with
+                7,870 training, 1,084 validation, and 1,076 test examples. The
+                agent is executed in a sandboxed CPU-only environment with a
+                total time limit of 2,400 seconds and a budget of 10 search
+                iterations. Final grading reads
+                <code>best_test_accuracy</code> from the agent's output
+                manifest.
+              </p>
+              <div class="track-meta">
+                <span class="track-tag"
+                  ><strong>Metric</strong> Best Test Accuracy</span
+                >
+                <span class="track-tag"
+                  ><strong>Submit</strong> agent.py</span
+                >
+                <span class="track-tag"
+                  ><strong>Budget</strong> 10 iterations</span
+                >
+              </div>
+              <a class="track-link" href="#">View on GitHub</a>
+            </div>
+          </article>
+
+          <!-- Track 3 -->
+          <article class="track-card" data-track="3">
+            <div class="track-card-header">
+              <div class="track-number">3</div>
+              <h3 class="track-card-title">
+                Cigarette Constituent Prediction
+              </h3>
+            </div>
+            <div class="track-card-body">
+              <p>
+                This is a regression task: given 36 physical and chemical
+                features of a cigarette sample, predict the amounts of three
+                harmful constituents&mdash;<em>Tar</em> (mg/cigarette),
+                <em>Carbon Monoxide</em> (mg/cigarette), and
+                <em>Phenol</em> (&micro;g/cigarette). The training set
+                contains 695 samples, though Phenol has 390 missing values that
+                require careful handling. The test set has 190 samples with no
+                target labels.
+              </p>
+              <p>
+                The baseline pipeline uses a
+                <code>TransformedTargetRegressor</code> with
+                <code>log1p</code> transform and XGBoost for each target
+                independently, combined with custom puff-feature engineering and
+                5-fold cross-validation. It achieves an average R&sup2; of
+                <strong>0.4018</strong> across the three targets. Your
+                submission is evaluated by computing the R&sup2; score for each
+                target and taking the mean.
+              </p>
+              <div class="track-meta">
+                <span class="track-tag"
+                  ><strong>Metric</strong> Average R&sup2;</span
+                >
+                <span class="track-tag"
+                  ><strong>Submit</strong> prediction.csv</span
+                >
+                <span class="track-tag"
+                  ><strong>Targets</strong> Tar, CO, Phenol</span
+                >
+              </div>
+              <a class="track-link" href="#">View on GitHub</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Grading (Placeholder) ===== -->
+    <section class="section" id="grading">
+      <div class="container">
+        <div class="section-header">
+          <h2>Grading Policy</h2>
+          <p>
+            Detailed grading rules and scoring rubric for each track.
+          </p>
+          <div class="section-divider"></div>
+        </div>
+        <div class="grading-section">
+          <p>Grading details will be announced here.</p>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
