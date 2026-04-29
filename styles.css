@@ -300,6 +300,138 @@ a:hover {
   content: "\2192";
 }
 
+/* ===== Section Alt Background ===== */
+.section-alt {
+  background: #eef0f4;
+}
+
+/* ===== Team Formation ===== */
+.team-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  padding: 2rem 2.25rem;
+}
+
+.team-rule {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 0.85rem 0;
+}
+
+.team-rule + .team-rule {
+  border-top: 1px solid var(--border-light);
+}
+
+.team-rule-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--hero-accent);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.team-rule p {
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+.team-rule p strong {
+  color: var(--text-primary);
+}
+
+.team-cta {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 0.7rem 1.6rem;
+  background: var(--hero-accent);
+  color: #fff;
+  font-size: 0.92rem;
+  font-weight: 600;
+  border-radius: 6px;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.team-cta:hover {
+  background: #3a56d4;
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+/* ===== Deliverables ===== */
+.deliverables-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  padding: 2rem 2.25rem;
+}
+
+.deliverables-list {
+  list-style: none;
+  padding: 0;
+}
+
+.deliverables-list li {
+  padding: 0.85rem 0;
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+.deliverables-list li + li {
+  border-top: 1px solid var(--border-light);
+}
+
+.deliverables-list li strong {
+  color: var(--text-primary);
+}
+
+.deliverables-list li code {
+  background: #f0f2f5;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
+
+/* ===== Due Dates ===== */
+.dates-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.date-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  padding: 2rem;
+  text-align: center;
+}
+
+.date-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-bottom: 0.6rem;
+}
+
+.date-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
 /* ===== Grading Placeholder ===== */
 .grading-section {
   background: var(--card-bg);

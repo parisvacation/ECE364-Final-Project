@@ -18,6 +18,9 @@
       </a>
       <div class="topbar-nav">
         <a href="#tracks">Tracks</a>
+        <a href="#teams">Teams</a>
+        <a href="#deliverables">Deliverables</a>
+        <a href="#dates">Due Dates</a>
         <a href="#grading">Grading</a>
       </div>
     </nav>
@@ -28,10 +31,12 @@
         <div class="hero-label">Spring 2026</div>
         <h1>ECE364 Final Project</h1>
         <p>
-          Three independent tracks covering 3D point cloud classification,
-          automated machine-learning research with large language models, and
-          regression-based constituent prediction. Choose one track, build on
-          the provided baseline, and submit your best results.
+          The final project is designed to give you hands-on experience building
+          and improving machine learning models on real-world tasks. We offer
+          three independent tracks&mdash;you choose one and explore any creative
+          or unconventional methods you can think of to beat the baseline. This
+          is an open-ended challenge, and the most important thing we want to see
+          is effort. Details for Spring 2026 have been released!
         </p>
       </div>
     </header>
@@ -59,31 +64,27 @@
             </div>
             <div class="track-card-body">
               <p>
-                In this track you build a robust classifier for corrupted 3D
-                point clouds. The dataset is based on ModelNet40 and contains
-                40 object categories with seven types of synthetic
-                corruption&mdash;jitter, scale, rotation, global dropout, local
-                dropout, global outlier addition, and density increase&mdash;at
-                three severity levels. The training set provides 25,086
-                labelled point clouds and the validation set 4,434, while the
-                test set (7,404 samples) uses anonymised file names so that
-                class labels are not available during inference.
+                Build a robust classifier for corrupted 3D point clouds. Given a
+                point cloud that has been perturbed by one of several synthetic
+                corruption types, your model must predict the correct object
+                category among 40 classes.
               </p>
               <p>
-                The reference baseline is a from-scratch PointNet++ (SSG)
-                implementation with 1.47 million trainable parameters. Without
-                any additional data augmentation beyond the on-disk
-                corruptions, it achieves <strong>86.60&thinsp;%</strong>
-                classification accuracy on the held-out test set. Your goal is
-                to improve upon this accuracy through better architectures,
-                training strategies, or data processing.
+                The dataset is based on ModelNet40. Each source shape is
+                replicated with random corruptions (jitter, scale, rotation,
+                global/local dropout, outlier addition, density increase) at
+                three severity levels, yielding 25,086 training, 4,434
+                validation, and 7,404 test samples. Test files are anonymised so
+                that class labels are not available during inference.
+              </p>
+              <p>
+                The baseline is a from-scratch PointNet++ (SSG) with 1.47M
+                trainable parameters, achieving <strong>86.60&thinsp;%</strong>
+                test accuracy without additional augmentation.
               </p>
               <div class="track-meta">
                 <span class="track-tag"><strong>Metric</strong> Accuracy</span>
-                <span class="track-tag"
-                  ><strong>Submit</strong> submission.csv</span>
-                <span class="track-tag"
-                  ><strong>Classes</strong> 40</span>
+                <span class="track-tag"><strong>Submit</strong> submission.csv</span>
               </div>
               <a class="track-link" href="#">View on GitHub</a>
             </div>
@@ -97,35 +98,28 @@
             </div>
             <div class="track-card-body">
               <p>
-                Rather than manually tuning a model, this track asks you to
-                write an agent (<code>agent.py</code>) that
+                Write an agent (<code>agent.py</code>) that
                 <em>automatically</em> searches for a better training pipeline.
-                The agent reads a baseline
-                <code>train.py</code>&mdash;a Deep Averaging Network (DAN) for
-                intent classification&mdash;and iteratively asks an LLM
-                (Kimi-K2.5) to propose improved versions. Each proposal is
-                validated locally; only candidates that improve on the current
-                best validation accuracy are kept.
+                The agent reads a baseline <code>train.py</code>, iteratively
+                asks an LLM (Kimi-K2.5) to propose improved versions, validates
+                each proposal locally, and keeps only candidates that improve
+                validation accuracy.
               </p>
               <p>
-                The evaluation benchmark contains 64 intent categories with
-                7,870 training, 1,084 validation, and 1,076 test examples. The
-                agent is executed in a sandboxed CPU-only environment with a
-                total time limit of 2,400 seconds and a budget of 10 search
-                iterations. Final grading reads
-                <code>best_test_accuracy</code> from the agent's output
-                manifest.
+                The evaluation benchmark is an intent classification task with
+                64 categories, containing 7,870 training, 1,084 validation, and
+                1,076 test examples. A separate development benchmark (35
+                categories) is provided for local debugging.
+              </p>
+              <p>
+                The baseline model is a Deep Averaging Network (DAN) with
+                learnable embeddings. The agent runs in a sandboxed CPU-only
+                environment with a budget of <strong>10 iterations</strong> and a
+                total time limit of 2,400 seconds.
               </p>
               <div class="track-meta">
-                <span class="track-tag"
-                  ><strong>Metric</strong> Best Test Accuracy</span
-                >
-                <span class="track-tag"
-                  ><strong>Submit</strong> agent.py</span
-                >
-                <span class="track-tag"
-                  ><strong>Budget</strong> 10 iterations</span
-                >
+                <span class="track-tag"><strong>Metric</strong> Best Test Accuracy</span>
+                <span class="track-tag"><strong>Submit</strong> agent.py</span>
               </div>
               <a class="track-link" href="#">View on GitHub</a>
             </div>
@@ -141,39 +135,118 @@
             </div>
             <div class="track-card-body">
               <p>
-                This is a regression task: given 36 physical and chemical
-                features of a cigarette sample, predict the amounts of three
-                harmful constituents&mdash;<em>Tar</em> (mg/cigarette),
-                <em>Carbon Monoxide</em> (mg/cigarette), and
-                <em>Phenol</em> (&micro;g/cigarette). The training set
-                contains 695 samples, though Phenol has 390 missing values that
-                require careful handling. The test set has 190 samples with no
-                target labels.
+                Predict the amounts of three harmful constituents&mdash;<em>Tar</em>
+                (mg/cigarette), <em>Carbon Monoxide</em> (mg/cigarette), and
+                <em>Phenol</em> (&micro;g/cigarette)&mdash;from 36 physical and
+                chemical features of cigarette samples.
               </p>
               <p>
-                The baseline pipeline uses a
-                <code>TransformedTargetRegressor</code> with
+                The training set contains 695 samples with all three target
+                values, though Phenol has 390 missing entries that require
+                careful handling. The test set comprises 190 samples with no
+                target labels provided.
+              </p>
+              <p>
+                The baseline is a <code>TransformedTargetRegressor</code> with
                 <code>log1p</code> transform and XGBoost for each target
                 independently, combined with custom puff-feature engineering and
-                5-fold cross-validation. It achieves an average R&sup2; of
-                <strong>0.4018</strong> across the three targets. Your
-                submission is evaluated by computing the R&sup2; score for each
-                target and taking the mean.
+                5-fold cross-validation. It achieves an average
+                R&sup2;&nbsp;of <strong>0.4018</strong> across the three
+                targets.
               </p>
               <div class="track-meta">
-                <span class="track-tag"
-                  ><strong>Metric</strong> Average R&sup2;</span
-                >
-                <span class="track-tag"
-                  ><strong>Submit</strong> prediction.csv</span
-                >
-                <span class="track-tag"
-                  ><strong>Targets</strong> Tar, CO, Phenol</span
-                >
+                <span class="track-tag"><strong>Metric</strong> Average R&sup2;</span>
+                <span class="track-tag"><strong>Submit</strong> prediction.csv</span>
               </div>
               <a class="track-link" href="#">View on GitHub</a>
             </div>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Team Formation ===== -->
+    <section class="section section-alt" id="teams">
+      <div class="container">
+        <div class="section-header">
+          <h2>Team Formation</h2>
+          <p>
+            Form a team and register your group before the deadline.
+          </p>
+          <div class="section-divider"></div>
+        </div>
+        <div class="team-card">
+          <div class="team-rule">
+            <span class="team-rule-icon">&#10102;</span>
+            <p>Each team must have a minimum of <strong>1</strong> member and a maximum of <strong>3</strong> members.</p>
+          </div>
+          <div class="team-rule">
+            <span class="team-rule-icon">&#10103;</span>
+            <p>Every team member must be enrolled in ECE364 this semester.</p>
+          </div>
+          <div class="team-rule">
+            <span class="team-rule-icon">&#10104;</span>
+            <p>Each team selects exactly <strong>one</strong> track to participate in.</p>
+          </div>
+          <a
+            class="team-cta"
+            href="https://docs.qq.com/sheet/DWGVBb29sTEFDVUhx?tab=BB08J2"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Register Your Team &rarr;
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Deliverables ===== -->
+    <section class="section" id="deliverables">
+      <div class="container">
+        <div class="section-header">
+          <h2>Deliverables</h2>
+          <p>What you need to submit for your chosen track.</p>
+          <div class="section-divider"></div>
+        </div>
+        <div class="deliverables-card">
+          <ul class="deliverables-list">
+            <li>
+              <strong>Your code</strong>
+              &mdash; all source code used to produce your results.
+            </li>
+            <li>
+              <strong>Result of your code</strong>
+              &mdash; the required submission file for your track
+              (<code>submission.csv</code>, <code>agent.py</code>, or
+              <code>prediction.csv</code>).
+            </li>
+            <li>
+              <strong>Your report</strong>
+              &mdash; a written report describing your approach, experiments,
+              and findings.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Due Dates ===== -->
+    <section class="section section-alt" id="dates">
+      <div class="container">
+        <div class="section-header">
+          <h2>Due Dates</h2>
+          <p>Key deadlines for the project.</p>
+          <div class="section-divider"></div>
+        </div>
+        <div class="dates-grid">
+          <div class="date-card">
+            <div class="date-label">Competition Closes</div>
+            <div class="date-value">2026 / 05 / 22</div>
+          </div>
+          <div class="date-card">
+            <div class="date-label">Report Due</div>
+            <div class="date-value">2026 / 05 / 27</div>
+          </div>
         </div>
       </div>
     </section>
