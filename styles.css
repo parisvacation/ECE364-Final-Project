@@ -594,7 +594,8 @@ a:hover {
 
 /* ===== Formula Block ===== */
 .formula-block {
-  background: var(--nav-bg);
+  background: #f8f9fa;
+  border: 1px solid var(--border-light);
   border-radius: 6px;
   padding: 1rem 1.25rem;
   text-align: center;
@@ -604,14 +605,14 @@ a:hover {
 .formula-block code {
   font-family: "SF Mono", "Fira Code", "Cascadia Code", Consolas, monospace;
   font-size: 0.95rem;
-  color: #e0e0e0;
+  color: var(--text-primary);
   font-weight: 500;
   letter-spacing: 0.01em;
 }
 
 .formula-block code sub {
   font-size: 0.75em;
-  color: #a0a8c0;
+  color: var(--text-secondary);
 }
 
 .formula-label {
@@ -650,7 +651,8 @@ a:hover {
 
 /* ===== Final Formula ===== */
 .final-formula {
-  background: var(--nav-bg);
+  background: #f8f9fa;
+  border: 1px solid var(--border-light);
   border-radius: var(--radius);
   padding: 1.25rem 1.5rem;
   text-align: center;
@@ -661,14 +663,14 @@ a:hover {
 .final-formula code {
   font-family: "SF Mono", "Fira Code", "Cascadia Code", Consolas, monospace;
   font-size: 1.05rem;
-  color: #fff;
+  color: var(--text-primary);
   font-weight: 700;
   letter-spacing: 0.01em;
 }
 
 .final-formula code sub {
   font-size: 0.75em;
-  color: #a0a8c0;
+  color: var(--text-secondary);
 }
 
 .final-formula .formula-label {
