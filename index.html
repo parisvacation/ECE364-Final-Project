@@ -257,66 +257,71 @@
           <div class="section-divider"></div>
         </div>
 
-        <div class="grading-block">
-          <h3>Code &amp; Leaderboard &mdash; <span>90%</span></h3>
-          <p>
-            To encourage participation, we run a live leaderboard competition.
-            You can submit your results to see your score and real-time ranking.
-            Each track has its own independent leaderboard. Final scores are
-            determined by your ranking within your track according to the table
-            below.
-          </p>
-          <table class="grading-table">
-            <thead>
-              <tr>
-                <th>Ranking</th>
-                <th>Score</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1st place</td>
-                <td><strong>100</strong></td>
-              </tr>
-              <tr>
-                <td>Top 2&ndash;10% (excluding 1st)</td>
-                <td><strong>95</strong></td>
-              </tr>
-              <tr>
-                <td>Top 11&ndash;20%</td>
-                <td><strong>90</strong></td>
-              </tr>
-              <tr>
-                <td>Top 21&ndash;30%</td>
-                <td><strong>85</strong></td>
-              </tr>
-              <tr>
-                <td>Top 31&ndash;40%</td>
-                <td><strong>80</strong></td>
-              </tr>
-              <tr>
-                <td>Top 41&ndash;50%</td>
-                <td><strong>75</strong></td>
-              </tr>
-              <tr>
-                <td>Below baseline or 51&ndash;100%</td>
-                <td><strong>70</strong></td>
-              </tr>
-            </tbody>
-          </table>
-          <p class="grading-note">
-            Percentiles are calculated based on the total number of
-            participating teams in each track.
-          </p>
-          <p class="grading-note">
-            The grading system and leaderboard are now live at
-            <strong>
-              <a href="http://115.29.192.116" target="_blank" rel="noreferrer"
-                >115.29.192.116</a
-              >
-            </strong>.
-          </p>
-        </div>
+       <div class="grading-block">
+        <h3>Code &amp; Leaderboard &mdash; <span>90%</span></h3>
+        <p>
+          Each track has its own independent leaderboard and baseline. At the end of
+          the competition, each team selects one track as its final grading track.
+          Rankings and scores are computed only among teams that select the same
+          track for final grading.
+        </p>
+
+        <p>
+          Let <code>x_i</code> be a team's final metric score, <code>B</code> be the
+          baseline score of the selected track, <code>x_max</code> be the highest
+          final metric score among teams graded on that track, <code>k_i</code> be the
+          team's rank in that track, and <code>n</code> be the number of teams graded
+          on that track. All track metrics are higher-is-better.
+        </p>
+
+        <p>
+          If <code>x_i &lt;= B</code>, then the Code &amp; Leaderboard score is:
+        </p>
+
+        <p class="grading-note">
+          <strong><code>S_code = 70</code></strong>
+        </p>
+
+        <p>
+          If <code>x_i &gt; B</code>, then the Code &amp; Leaderboard score is:
+        </p>
+
+        <p class="grading-note">
+          <strong>
+            <code>S_code = 70 + 30 * (0.5 * R_i + 0.5 * P_i)</code>
+          </strong>
+        </p>
+
+      <p>
+        where:
+      </p>
+
+      <p class="grading-note">
+        <code>R_i = 1 - (k_i - 1) / (n - 1)</code>
+      </p>
+
+      <p class="grading-note">
+        <code>P_i = (x_i - B) / (x_max - B)</code>
+      </p>
+
+      <p>
+        The final project score is:
+      </p>
+
+      <p class="grading-note">
+        <strong><code>S_final = 0.9 * S_code + 0.1 * S_report</code></strong>
+      </p>
+
+      <p class="grading-note">
+        The grading system and leaderboard are now live at
+        <strong>
+          <a href="http://115.29.192.116" target="_blank" rel="noreferrer"
+            >115.29.192.116</a
+          >
+        </strong>.
+      </p>
+    </div>
+
 
         <div class="grading-block">
           <h3>How to Use the Grading System</h3>
