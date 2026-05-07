@@ -257,70 +257,90 @@
           <div class="section-divider"></div>
         </div>
 
-       <div class="grading-block">
-        <h3>Code &amp; Leaderboard &mdash; <span>90%</span></h3>
-        <p>
-          Each track has its own independent leaderboard and baseline. At the end of
-          the competition, each team selects one track as its final grading track.
-          Rankings and scores are computed only among teams that select the same
-          track for final grading.
-        </p>
+        <div class="grading-block">
+          <h3>Code &amp; Leaderboard &mdash; <span>90%</span></h3>
+          <p>
+            Each track has its own independent leaderboard and baseline. At the end of
+            the competition, each team selects one track as its final grading track.
+            Rankings and scores are computed only among teams that select the same
+            track for final grading. All track metrics are <strong>higher-is-better</strong>.
+          </p>
 
-        <p>
-          Let <code>x_i</code> be a team's final metric score, <code>B</code> be the
-          baseline score of the selected track, <code>x_max</code> be the highest
-          final metric score among teams graded on that track, <code>k_i</code> be the
-          team's rank in that track, and <code>n</code> be the number of teams graded
-          on that track. All track metrics are higher-is-better.
-        </p>
+          <table class="var-table">
+            <thead>
+              <tr>
+                <th>Variable</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>x_i</code></td>
+                <td>Team&rsquo;s final metric score</td>
+              </tr>
+              <tr>
+                <td><code>B</code></td>
+                <td>Baseline score of the selected track</td>
+              </tr>
+              <tr>
+                <td><code>x_max</code></td>
+                <td>Highest metric score among all teams on that track</td>
+              </tr>
+              <tr>
+                <td><code>k_i</code></td>
+                <td>Team&rsquo;s rank on that track</td>
+              </tr>
+              <tr>
+                <td><code>n</code></td>
+                <td>Number of teams graded on that track</td>
+              </tr>
+            </tbody>
+          </table>
 
-        <p>
-          If <code>x_i &lt;= B</code>, then the Code &amp; Leaderboard score is:
-        </p>
+          <h4 class="case-heading">Scoring Rules</h4>
 
-        <p class="grading-note">
-          <strong><code>S_code = 70</code></strong>
-        </p>
+          <div class="case-cards">
+            <div class="case-card case-card-a">
+              <div class="case-label">Case A</div>
+              <div class="case-condition"><code>x_i &le; B</code> &mdash; did not exceed baseline</div>
+              <div class="formula-block">
+                <span class="formula-label">Code &amp; Leaderboard Score</span>
+                <code>S_code = 70</code>
+              </div>
+            </div>
 
-        <p>
-          If <code>x_i &gt; B</code>, then the Code &amp; Leaderboard score is:
-        </p>
+            <div class="case-card case-card-b">
+              <div class="case-label">Case B</div>
+              <div class="case-condition"><code>x_i &gt; B</code> &mdash; exceeded baseline</div>
+              <div class="formula-block">
+                <span class="formula-label">Code &amp; Leaderboard Score</span>
+                <code>S_code = 70 + 30 &times; (0.5 &times; R<sub>i</sub> + 0.5 &times; P<sub>i</sub>)</code>
+              </div>
+              <div class="sub-formulas">
+                <div class="formula-block formula-sm">
+                  <span class="formula-label">Rank Score</span>
+                  <code>R<sub>i</sub> = 1 &minus; (k<sub>i</sub> &minus; 1) / (n &minus; 1)</code>
+                </div>
+                <div class="formula-block formula-sm">
+                  <span class="formula-label">Performance Score</span>
+                  <code>P<sub>i</sub> = (x<sub>i</sub> &minus; B) / (x<sub>max</sub> &minus; B)</code>
+                </div>
+              </div>
+            </div>
+          </div>
 
-        <p class="grading-note">
-          <strong>
-            <code>S_code = 70 + 30 * (0.5 * R_i + 0.5 * P_i)</code>
-          </strong>
-        </p>
+          <div class="grading-divider"></div>
 
-      <p>
-        where:
-      </p>
+          <div class="final-formula">
+            <span class="formula-label">Final Project Score</span>
+            <code>S_final = 0.9 &times; S_code + 0.1 &times; S_report</code>
+          </div>
 
-      <p class="grading-note">
-        <code>R_i = 1 - (k_i - 1) / (n - 1)</code>
-      </p>
-
-      <p class="grading-note">
-        <code>P_i = (x_i - B) / (x_max - B)</code>
-      </p>
-
-      <p>
-        The final project score is:
-      </p>
-
-      <p class="grading-note">
-        <strong><code>S_final = 0.9 * S_code + 0.1 * S_report</code></strong>
-      </p>
-
-      <p class="grading-note">
-        The grading system and leaderboard are now live at
-        <strong>
-          <a href="http://115.29.192.116" target="_blank" rel="noreferrer"
-            >115.29.192.116</a
-          >
-        </strong>.
-      </p>
-    </div>
+          <p class="grading-note grading-system-link">
+            The grading system and leaderboard are now live at
+            <a href="http://115.29.192.116" target="_blank" rel="noreferrer">115.29.192.116</a>.
+          </p>
+        </div>
 
 
         <div class="grading-block">
